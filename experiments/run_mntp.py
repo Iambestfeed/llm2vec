@@ -52,7 +52,7 @@ from transformers.utils.versions import require_version
 
 from peft import LoraConfig, get_peft_model
 
-from llm2vec.models import MistralBiForMNTP, LlamaBiForMNTP
+from llm2vec.models import MistralBiForMNTP, LlamaBiForMNTP, Qwen2BiForMNTP
 
 # Will error if the minimal version of Transformers is not installed. Remove at your own risks.
 # check_min_version("4.38.0.dev0")
@@ -73,6 +73,8 @@ def get_model_class(config):
         return MistralBiForMNTP
     elif config_class_name == "LlamaConfig":
         return LlamaBiForMNTP
+    elif config_class_name == "Qwen2Config":
+        return Qwen2BiForMNTP
     else:
         raise ValueError(f"Model class {config_class_name} not supported.")
 
@@ -87,6 +89,7 @@ def initialize_peft(
     if lora_modules is None and model.config.__class__.__name__ in [
         "LlamaConfig",
         "MistralConfig",
+        "Qwen2Config",
     ]:
         lora_modules = [
             "q_proj",
