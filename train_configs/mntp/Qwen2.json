@@ -15,10 +15,8 @@
     "output_dir": "output/mlm/Qwen-1.5-0.5B",
     "evaluation_strategy": "steps",
     "eval_steps": 100,
-    "save_steps": 200,
-    "stop_after_n_steps": 1000,
+    "save_strategy" : "epoch",
     "lora_r": 16,
     "gradient_checkpointing": true,
-    "torch_dtype": "bfloat16",
-    "attn_implementation": "flash_attention_2"
+    "torch_dtype": "bfloat16"
 }
